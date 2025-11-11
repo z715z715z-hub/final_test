@@ -1,4 +1,4 @@
- 🌦️ 나만의 날씨 예보 프로젝트
+## 🌦️ 나만의 날씨 예보 프로젝트
 
 **개발 언어:** HTML, CSS, JavaScript  
 **API:** OpenWeatherMap  
@@ -18,3 +18,4 @@
 - 여행지 팁, 패션 추천(advice.js)
 - 다국어 지원
 - 캐릭터 UI
+
