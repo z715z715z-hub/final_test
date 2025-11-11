@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>나만의 날씨 예보</title>
+  <link rel="stylesheet" href="style.css" />
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <header class="header">
+    <h1 id="appTitle">나만의 날씨 예보 ☁️</h1>
+
+    <div class="search-box">
+      <input type="text" id="cityInput" placeholder="도시 이름을 입력하세요" />
+      <button id="searchBtn">검색</button>
+      <button id="locationBtn">📍 내 위치로 보기</button>
+
+      <!-- 🌐 언어 선택 -->
+      <select id="langSelect" aria-label="Language">
+        <option value="ko" selected>한국어</option>
+        <option value="en">English</option>
+        <option value="ja">日本語</option>
+      </select>
+    </div>
+
+    <div class="recent-search" id="recentSection" style="display:none;">
+      <h3 id="recentTitle">최근 검색</h3>
+      <div id="recentList"></div>
+    </div>
+  </header>
+
+  <main class="weather-container">
+    <!-- 고양이 UI (맨 위) -->
+    <div class="cat-ui">
+      <div class="cat-icon">😺</div>
+      <div class="cat-message" id="catMessage">냐하~ 도시를 검색하면 내가 귀엽게 알려줄게냥!</div>
+    </div>
+
+    <!-- 2열: 왼=현재 날씨 / 오른=여행팁+복장 -->
+    <div class="weather-grid">
+      <!-- 현재 날씨 -->
+      <section class="current-weather" id="currentCard">
+        <h2 id="cityName"></h2>
+        <div class="weather-info">
+          <img id="weatherIcon" src="" alt="날씨 아이콘" style="display:none;" />
+        </div>
+        <div class="temp-info">
+          <p id="temperature"></p>
+          <button id="unitBtn">🌡️ 섭씨 (°C)</button>
+          <p id="description"></p>
+        </div>
+        <p class="extra-info">
+          <span id="humidity"></span>
+          <span id="wind"></span>
+          <span id="airQuality"></span>
+        </p>
+      </section>
+
+      <!-- 여행지 팁 & 복장 -->
+      <section class="advice-card" id="adviceCard">
+        <h3 id="adviceTitle">여행지 팁 & 오늘의 복장</h3>
+        <div class="advice-content">
+          <div class="advice-block">
+            <h4 id="travelTipsTitle">여행지 팁</h4>
+            <p id="travelTips">도시를 검색하면 여행 팁이 표시됩니다.</p>
+          </div>
+          <div class="advice-block">
+            <h4 id="outfitTitle">복장 추천</h4>
+            <p id="outfitAdvice">현재 날씨에 맞는 복장이 여기에 표시됩니다.</p>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- 차트 (그리드 밖, 동일 폭) -->
+    <section class="chart-section" id="chartCard">
+      <div id="chartPlaceholder">시간별 온도 변화</div>
+      <canvas id="tempChart"></canvas>
+    </section>
+
+    <!-- 3일 예보 (그리드 밖, 동일 폭) -->
+    <section class="forecast" id="forecastCard">
+      <h3 class="forecast-title" id="forecastTitle">3일 예보</h3>
+      <div class="forecast-cards" id="forecastCards">
+        <!-- 초기: 이미지 포함 빈 카드 3개 표시해 기본 레이아웃 유지 -->
+        <div class="card empty"><p>—</p><img style="opacity:.2" src="https://openweathermap.org/img/wn/02d.png" alt=""><p>—</p></div>
+        <div class="card empty"><p>—</p><img style="opacity:.2" src="https://openweathermap.org/img/wn/03d.png" alt=""><p>—</p></div>
+        <div class="card empty"><p>—</p><img style="opacity:.2" src="https://openweathermap.org/img/wn/04d.png" alt=""><p>—</p></div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 My Weather Project | Powered by OpenWeather</p>
+  </footer>
+
+  <!-- 분리 스크립트 -->
+  <script src="advice.js"></script>
+  <script src="chart.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
